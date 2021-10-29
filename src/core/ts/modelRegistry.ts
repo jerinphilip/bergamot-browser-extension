@@ -10,6 +10,144 @@ export interface ModelRegistry {
 }
 
 export const modelRegistry: ModelRegistry = {
+  enit: {
+    vocab: {
+      name: "vocab.enit.spm",
+      size: 814128,
+      estimatedCompressedSize: 405338,
+      expectedSha256Hash:
+        "de8cbeb79e0139304bfa47e8559f2447016bf9906225a97d3df1baed4de8f3a3",
+    },
+    lex: {
+      name: "lex.50.50.enit.s2t.bin",
+      size: 4489920,
+      estimatedCompressedSize: 2409986,
+      expectedSha256Hash:
+        "bb1fad3b3f6a13ebce1698cf7f39ca736c4dea4525f3dab5e1a78436f07445e6",
+    },
+    model: {
+      name: "model.enit.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 13283223,
+      expectedSha256Hash:
+        "a5ce3723f62ead92a0e0373b6df0ad8e3e6d22963adb1333984206e33b8b6c61",
+    },
+  },
+  enpt: {
+    vocab: {
+      name: "vocab.enpt.spm",
+      size: 812781,
+      estimatedCompressedSize: 406524,
+      expectedSha256Hash:
+        "633a3d782c79f7d5e4b94ab96848f47c2fdf8ba82dd99efd1742b8a696bbd0cc",
+    },
+    lex: {
+      name: "lex.50.50.enpt.s2t.bin",
+      size: 4472528,
+      estimatedCompressedSize: 2411984,
+      expectedSha256Hash:
+        "1e96599123d275afa37353dfe84677a4070f013494fbdc9c52a28445cc9bc38d",
+    },
+    model: {
+      name: "model.enpt.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 13429592,
+      expectedSha256Hash:
+        "d968735704c75e33c2e183b9241f14c0b2a560d01d88a2728e5c0119a4d7fb22",
+    },
+  },
+  enru: {
+    vocab: {
+      name: "vocab.enru.spm",
+      size: 937157,
+      estimatedCompressedSize: 435776,
+      expectedSha256Hash:
+        "feca2d44f01b946c85faba3b15b5eb53344bec84cd14a1a4d4a82ddd774c5edd",
+    },
+    lex: {
+      name: "lex.50.50.enru.s2t.bin",
+      size: 3049096,
+      estimatedCompressedSize: 1579779,
+      expectedSha256Hash:
+        "7bd3e2c0a72286fe1f3da65c56c49a7cd77efa5f1d1a444e2a9e769480b96ff3",
+    },
+    model: {
+      name: "model.enru.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 12853987,
+      expectedSha256Hash:
+        "4a45186a93b8a2dd9301c66a3b3dad580b1bcfa74aadda583ca383f9fe0dea93",
+    },
+  },
+  iten: {
+    vocab: {
+      name: "vocab.iten.spm",
+      size: 814151,
+      estimatedCompressedSize: 405416,
+      expectedSha256Hash:
+        "22d5ce6973be5360a921103acbe984a9bfca952a1f6c55c9cb5ef7de4fd58266",
+    },
+    lex: {
+      name: "lex.50.50.iten.s2t.bin",
+      size: 5238420,
+      estimatedCompressedSize: 2860178,
+      expectedSha256Hash:
+        "357d362373022b029ee9965975a133e6f36fdb0fed749202ff578365cf0111f8",
+    },
+    model: {
+      name: "model.iten.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 13423308,
+      expectedSha256Hash:
+        "1fae546faeb9046f80b1b7e940b37b660974ce72902778181d6cd1c30b717f35",
+    },
+  },
+  pten: {
+    vocab: {
+      name: "vocab.pten.spm",
+      size: 812889,
+      estimatedCompressedSize: 406730,
+      expectedSha256Hash:
+        "8389979e3c965688b07aeb712a7e44406e5dcdb2b84087229d26fcc71448c4ed",
+    },
+    lex: {
+      name: "lex.50.50.pten.s2t.bin",
+      size: 5001420,
+      estimatedCompressedSize: 2733800,
+      expectedSha256Hash:
+        "212ed0ae44a6f920cd6d17ca02f0a523ba6c4b0ef5078ae310c20bc4c51484c5",
+    },
+    model: {
+      name: "model.pten.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 13584764,
+      expectedSha256Hash:
+        "6c3b7af01772022a19712410c63342ba581468c2f1aac34d7488409c4043e697",
+    },
+  },
+  ruen: {
+    vocab: {
+      name: "vocab.ruen.spm",
+      size: 936576,
+      estimatedCompressedSize: 435801,
+      expectedSha256Hash:
+        "aaf9a325c0a988c507d0312cb6ba1a02bac7a370bcd879aedee626a40bfbda78",
+    },
+    lex: {
+      name: "lex.50.50.ruen.s2t.bin",
+      size: 5090836,
+      estimatedCompressedSize: 2684919,
+      expectedSha256Hash:
+        "e6667e22f5f86be4872e3768b7184727f5dd8c9f2ccfb0639baabcb1176f5d11",
+    },
+    model: {
+      name: "model.ruen.intgemm.alphas.bin",
+      size: 17140836,
+      estimatedCompressedSize: 13108893,
+      expectedSha256Hash:
+        "3b6a0305e3d232fadd54f5a765365b7b96ad6d8f2e818cba594b02fbd8fadb3d",
+    },
+  },
   csen: {
     vocab: {
       name: "vocab.csen.spm",
@@ -33,6 +171,29 @@ export const modelRegistry: ModelRegistry = {
         "5b16661e2864dc50b2f4091a16bdd4ec8d8283e04271e602159ba348df5d6e2d",
     },
   },
+  deen: {
+    vocab: {
+      name: "vocab.deen.spm",
+      size: 784269,
+      estimatedCompressedSize: 410738,
+      expectedSha256Hash:
+        "417668f2ed297970febafb5b079a9d5ebc4ed0b3550ac8386d67a90473a09bd7",
+    },
+    lex: {
+      name: "lex.50.50.deen.s2t.bin",
+      size: 5047568,
+      estimatedCompressedSize: 2657472,
+      expectedSha256Hash:
+        "2f7c0f7bbce97ae5b52454074a892ba7b7610fb98e3c5d341e4ca79f0850c4de",
+    },
+    model: {
+      name: "model.deen.intgemm.alphas.bin",
+      size: 17140837,
+      estimatedCompressedSize: 13091214,
+      expectedSha256Hash:
+        "dda44d87ab0d8ad3b3871122fd3ee385f37878183a8b4ec139cd909531ec5009",
+    },
+  },
   encs: {
     vocab: {
       name: "vocab.csen.spm",
@@ -43,10 +204,10 @@ export const modelRegistry: ModelRegistry = {
     },
     lex: {
       name: "lex.50.50.encs.s2t.bin",
-      size: 12996877,
-      estimatedCompressedSize: 12976833,
+      size: 3556124,
+      estimatedCompressedSize: 1913246,
       expectedSha256Hash:
-        "9fcb2c558f39a2f276540a564f364d46a0943c85d44b0637ff1a6ee7d566b0ff",
+        "e19c77231bf977988e31ff8db15fe79966b5170564bd3e10613f239e7f461d97",
     },
     model: {
       name: "model.encs.intgemm.alphas.bin",

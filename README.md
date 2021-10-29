@@ -1,13 +1,17 @@
-# Bergamot Translate Browser Extension
+```
+This repo has been archived and the work on Firefox Translations will continue here: 
+https://github.com/mozilla/firefox-translations
+```
+# Firefox Translations Web Extension
 
-[![CircleCI badge](https://img.shields.io/circleci/project/github/mozilla-extensions/bergamot-browser-extension/main.svg?label=CircleCI)](https://circleci.com/gh/mozilla-extensions/bergamot-browser-extension/)
+[![CircleCI badge](https://img.shields.io/circleci/project/github/mozilla-extensions/firefox-translations/main.svg?label=CircleCI)](https://circleci.com/gh/mozilla-extensions/firefox-translations/)
 
 For more information see [The Bergamot Project website](https://browser.mt/).
 
-## Installation instructions
+## Installation and usage instructions
 
-See [docs/INSTALL.md](./docs/INSTALL.md) for instructions on how to get a pre-released version of the extension running locally.
+See [this document](https://mozilla-extensions.github.io/firefox-translations/user/index.html) for instructions on how to get a pre-released version of the extension running locally.
 
 ## Developer documentation
 
-See [docs/DEV.md](./docs/DEV.md) for details on how to work with this extension as a developer.
+See [this document](https://mozilla-extensions.github.io/firefox-translations/dev/index.html) for details on how to work with this extension as a developer.

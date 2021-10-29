@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Traducciones de Firefox",
+    "message": "Firefox Translations",
     "description": "Name of the extension"
   },
   "extensionDescription": {
@@ -35,7 +35,7 @@
   },
   "loadedLanguageModel": {
     "message": "Modelo de lenguaje cargado",
-    "description": "Informs the user that the translations feature is has loaded the language model files into memory."
+    "description": "Informs the user that the translations feature has loaded the language model files into memory."
   },
   "partsLeftToTranslate": {
     "message": "Partes que quedan para traducir: $NUM$",
