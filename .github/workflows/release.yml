@@ -28,7 +28,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const args = context.payload.ref.split("/");
+            const args = context.ref.split("/");
             [refs, category, ...rest] = args;
             return rest.join("/");
       # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
