@@ -22,21 +22,16 @@ jobs:
       #     refs/head/main   -> main
       #     refs/tags/v0.1.0 -> v0.1.0
       #
-      - name: Extract tag name
-        id: tag
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const args = context.ref.split("/");
-            [refs, category, ...rest] = args;
-            return rest.join("/");
+      - name: Set outputs
+        id: sha
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
       # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
       # obtain names like 'main' or 'ci-sandbox' to not confuse with version
       # based documentation built separately.
       - name: Deploy-time patch version 
         run: | 
-            echo ${{steps.tag.outputs.result }} > BERGAMOT_VERSION
+            echo ${{ steps.sha.outputs.result }} 
 
       - name: Set up dependencies
         run: |
@@ -66,21 +61,21 @@ jobs:
       - name: Upload Extension Firefox Infobar UI
         uses: actions/upload-artifact@v2
         with:
-          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}.xpi
+          name: bergamot-browser-extension-${{ steps.sha.outputs.result }}.xpi
           path: dist/production/firefox/firefox-infobar-ui/firefox-translations-0.4.4.xpi
           if-no-files-found: error
 
       - name: Upload Extension Firefox Cross Browser UI
         uses: actions/upload-artifact@v2
         with:
-          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}-cross-browser-ui.xpi
+          name: bergamot-browser-extension-${{ steps.sha.outputs.result }}-cross-browser-ui.xpi
           path: dist/production/firefox/cross-browser-ui/bergamot-browser-extension-0.4.4-firefox-cross-browser-ui.xpi
           if-no-files-found: error
 
       - name: Upload Extension Chrome Cross Browser UI
         uses: actions/upload-artifact@v2
         with:
-          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}-chrome.zip
+          name: bergamot-browser-extension-${{ steps.sha.outputs.result }}-chrome.zip
           path: dist/production/chrome/cross-browser-ui/bergamot-browser-extension-0.4.4-chrome-cross-browser-ui.zip
           if-no-files-found: error
 
