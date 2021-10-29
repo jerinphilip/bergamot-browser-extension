@@ -25,7 +25,6 @@ jobs:
       - name: Extract tag name
         id: tag
         uses: actions/github-script@0.2.0
-        if: ${{ github.event_name == 'push' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -44,26 +43,44 @@ jobs:
             sudo apt-get install -y doxygen nodejs
             npm install --global yarn
 
-      - name: Set up Python
+      - name: Install yarn requirements
         run: |
             yarn install --frozen-lockfile
             yarn bergamot-translator:download-and-import
             # TODO: Setup Checks
             yarn ci:install-firefox:linux
             # Don't need telemetry.
+            
+      - name: Build Extension Firefox Infobar UI
+        run: |
             yarn build:firefox-infobar-ui
+
+      - name: Build Extension Firefox Cross Browser UI
+        run: |
             yarn build:cross-browser-ui:firefox
+
+      - name: Build Extension Chrome Cross Browser UI
+        run: |
             yarn build:cross-browser-ui:chrome
 
-      # This artifact contains the HTML output of Sphinx only.
-      # With index.html at the root of the produced zip file.
-      # For use for maintainers to download the zip and check render of
-      # documentation while generated at pull-request. 
-      - name: Upload documentation
+      - name: Upload Extension Firefox Infobar UI
         uses: actions/upload-artifact@v2
-        if: ${{ github.event_name == 'pull_request'}}
         with:
-          name: api-docs
-          path: ./doc/build/
+          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}.xpi
+          path: dist/production/firefox/firefox-infobar-ui/firefox-translations-0.4.4.xpi
+          if-no-files-found: error
+
+      - name: Upload Extension Firefox Cross Browser UI
+        uses: actions/upload-artifact@v2
+        with:
+          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}-cross-browser-ui.xpi
+          path: dist/production/firefox/cross-browser-ui/bergamot-browser-extension-0.4.4-firefox-cross-browser-ui.xpi
+          if-no-files-found: error
+
+      - name: Upload Extension Chrome Cross Browser UI
+        uses: actions/upload-artifact@v2
+        with:
+          name: bergamot-browser-extension-${{ steps.tag.outputs.result }}-chrome.zip
+          path: dist/production/chrome/cross-browser-ui/bergamot-browser-extension-0.4.4-chrome-cross-browser-ui.zip
           if-no-files-found: error
 
