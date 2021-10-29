@@ -1,0 +1,69 @@
+name: Build Extension
+
+on:
+  push:
+    branches: [ main, ci-sandbox ]
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+  pull_request: 
+    branches: [ '**' ]
+
+jobs:
+  api-documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      # Runs javascript to extract push events from both tags and branch (only main, due to workflow trigger)
+      # converts refs/<>/<name> -> <name>
+      # eg:
+      #     refs/head/main   -> main
+      #     refs/tags/v0.1.0 -> v0.1.0
+      #
+      - name: Extract tag name
+        id: tag
+        uses: actions/github-script@0.2.0
+        if: ${{ github.event_name == 'push' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const args = context.payload.ref.split("/");
+            [refs, category, ...rest] = args;
+            return rest.join("/");
+      # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
+      # obtain names like 'main' or 'ci-sandbox' to not confuse with version
+      # based documentation built separately.
+      - name: Deploy-time patch version 
+        run: | 
+            echo ${{steps.tag.outputs.result }} > BERGAMOT_VERSION
+
+      - name: Set up dependencies
+        run: |
+            sudo apt-get install -y doxygen nodejs
+            npm install --global yarn
+
+      - name: Set up Python
+        run: |
+            yarn install --frozen-lockfile
+            yarn bergamot-translator:download-and-import
+            # TODO: Setup Checks
+            yarn ci:install-firefox:linux
+            # Don't need telemetry.
+            yarn build:firefox-infobar-ui
+            yarn build:cross-browser-ui:firefox
+            yarn build:cross-browser-ui:chrome
+
+      # This artifact contains the HTML output of Sphinx only.
+      # With index.html at the root of the produced zip file.
+      # For use for maintainers to download the zip and check render of
+      # documentation while generated at pull-request. 
+      - name: Upload documentation
+        uses: actions/upload-artifact@v2
+        if: ${{ github.event_name == 'pull_request'}}
+        with:
+          name: api-docs
+          path: ./doc/build/
+          if-no-files-found: error
+
