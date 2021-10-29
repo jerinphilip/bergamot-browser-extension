@@ -6,13 +6,15 @@ The commands in these instructions are meant to be run in the root folder in thi
 
 1. Follow the [Getting started](./getting-started.md) instructions
 
-2. Import bergamot models locally, since the extension downloads the models from a local endpoint when running in development mode:
+2. Install [Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)
+
+3. Import bergamot models locally, since the extension downloads the models from a local endpoint when running in development mode:
 
 ```bash
 yarn models:import
 ```
 
-3. Import Bergamot translator using one of the two methods below.
+4. Import Bergamot translator using one of the two methods below.
 
 ### Using known-to-work Bergamot Translator WASM artifacts and importing them to the extension
 
