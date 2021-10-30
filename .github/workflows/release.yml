@@ -58,24 +58,14 @@ jobs:
         run: |
             yarn build:cross-browser-ui:chrome
 
-      - name: Upload Extension Firefox Infobar UI
+      - name: Upload built extensions
         uses: actions/upload-artifact@v2
         with:
-          name: bergamot-browser-extension-${{ steps.sha.outputs.sha_short }}.xpi
-          path: dist/production/firefox/firefox-infobar-ui/firefox-translations-0.4.4.xpi
+          name: bergamot-browser-extension-${{ steps.sha.outputs.sha_short }}
+          path: |
+              dist/production/firefox/firefox-infobar-ui/firefox-translations-0.4.4.xpi
+              dist/production/firefox/cross-browser-ui/bergamot-browser-extension-0.4.4-firefox-cross-browser-ui.xpi
+              dist/production/chrome/cross-browser-ui/bergamot-browser-extension-0.4.4-chrome-cross-browser-ui.zip
           if-no-files-found: error
 
-      - name: Upload Extension Firefox Cross Browser UI
-        uses: actions/upload-artifact@v2
-        with:
-          name: bergamot-browser-extension-${{ steps.sha.outputs.sha_short }}-cross-browser-ui.xpi
-          path: dist/production/firefox/cross-browser-ui/bergamot-browser-extension-0.4.4-firefox-cross-browser-ui.xpi
-          if-no-files-found: error
-
-      - name: Upload Extension Chrome Cross Browser UI
-        uses: actions/upload-artifact@v2
-        with:
-          name: bergamot-browser-extension-${{ steps.sha.outputs.sha_short }}-chrome.zip
-          path: dist/production/chrome/cross-browser-ui/bergamot-browser-extension-0.4.4-chrome-cross-browser-ui.zip
-          if-no-files-found: error
 
