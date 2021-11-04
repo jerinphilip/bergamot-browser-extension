@@ -22,9 +22,11 @@ jobs:
       #     refs/head/main   -> main
       #     refs/tags/v0.1.0 -> v0.1.0
       #
-      - name: Set outputs
-        id: sha
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Get version information
+        id: version
+        run: |
+           echo "::set-output name=semantic::$(node -p \"require('../package.json').version\")"
+           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
       # obtain names like 'main' or 'ci-sandbox' to not confuse with version
@@ -61,11 +63,11 @@ jobs:
       - name: Upload built extensions
         uses: actions/upload-artifact@v2
         with:
-          name: bergamot-browser-extension-${{ steps.sha.outputs.sha_short }}
+          name: bergamot-browser-extension-${{ steps.sha.outputs.semantic }}
           path: |
-              dist/production/firefox/firefox-infobar-ui/firefox-translations-0.4.4.xpi
-              dist/production/firefox/cross-browser-ui/bergamot-browser-extension-0.4.4-firefox-cross-browser-ui.xpi
-              dist/production/chrome/cross-browser-ui/bergamot-browser-extension-0.4.4-chrome-cross-browser-ui.zip
+              dist/production/firefox/firefox-infobar-ui/firefox-translations-${{ steps.version.outputs.semantic }}.xpi
+              dist/production/firefox/cross-browser-ui/bergamot-browser-extension-${{ steps.version.outputs.semantic }}-firefox-cross-browser-ui.xpi
+              dist/production/chrome/cross-browser-ui/bergamot-browser-extension-${{ steps.version.outputs.semantic }}-chrome-cross-browser-ui.zip
           if-no-files-found: error
 
 
