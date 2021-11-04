@@ -26,7 +26,7 @@ jobs:
         working-directory: src
         run: |
            echo "::set-output name=semantic::$(node -p require\(\'../package.json\'\).version)"
-           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+           echo "::set-output name=sha_short::$(echo ${{ github.sha }} | cut -c 7)"
 
       - name: Just echoes the version
         run: | 
