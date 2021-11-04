@@ -22,18 +22,6 @@ jobs:
       #     refs/head/main   -> main
       #     refs/tags/v0.1.0 -> v0.1.0
       #
-      - name: Get version information
-        id: version
-        run: |
-           echo "::set-output name=semantic::$(node -p \"require('../package.json').version\")"
-           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
-      # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
-      # obtain names like 'main' or 'ci-sandbox' to not confuse with version
-      # based documentation built separately.
-      - name: Deploy-time patch version 
-        run: | 
-            echo ${{ steps.sha.outputs.sha_short }} 
 
       - name: Set up dependencies
         run: |
@@ -59,6 +47,19 @@ jobs:
       - name: Build Extension Chrome Cross Browser UI
         run: |
             yarn build:cross-browser-ui:chrome
+
+      - name: Get version information
+        id: version
+        run: |
+           echo "::set-output name=semantic::$(node -p require('../package.json').version)"
+           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      # Patches the BERGAMOT_VERSION file used by sphinx-docs at run time to
+      # obtain names like 'main' or 'ci-sandbox' to not confuse with version
+      # based documentation built separately.
+      - name: Deploy-time patch version 
+        run: | 
+            echo ${{ steps.sha.outputs.semantic }}+${{ steps.sha.outputs.sha_short }} 
 
       - name: Upload built extensions
         uses: actions/upload-artifact@v2
