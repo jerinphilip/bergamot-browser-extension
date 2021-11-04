@@ -30,7 +30,7 @@ jobs:
 
       - name: Just echoes the version
         run: | 
-            echo ${{ steps.sha.outputs.semantic }}+${{ steps.sha.outputs.sha_short }} 
+            echo ${{ steps.version.outputs.semantic }}+${{ steps.version.outputs.sha_short }} 
 
       - name: Install yarn requirements
         run: |
